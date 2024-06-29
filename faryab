@@ -1,0 +1,40 @@
+import matplotlib.pyplot as plt
+
+# Strain thresholds for beam and slab (steel)
+strain_safe_s = 0.5 * 6.2e-6
+strain_critical_s = 0.85 * 6.2e-6
+strain_max_s = 6.2e-6
+
+# Strain thresholds for column (concrete)
+strain_safe_c = 0.5 * 1.91e-4
+strain_critical_c = 0.85 * 1.91e-4
+strain_max_c = 1.91e-4
+
+plt.figure(figsize=(12, 6))
+
+# Steel (Beam and Slab)
+plt.subplot(1, 2, 1)
+plt.fill_between([0, strain_safe_s], [0, strain_max_s], color='green', alpha=0.3, label='Safe Zone')
+plt.fill_between([strain_safe_s, strain_critical_s], [strain_max_s, strain_max_s], color='yellow', alpha=0.3, label='Critical Zone')
+plt.fill_between([strain_critical_s, strain_max_s], [strain_max_s, strain_max_s], color='red', alpha=0.3, label='Evacuation Zone')
+plt.plot([0, strain_max_s], [0, strain_max_s], color='black', lw=2, label='Strain Curve')
+plt.title('Strain Zones for Steel (Beam and Slab)')
+plt.xlabel('Strain')
+plt.ylabel('Strain')
+plt.legend()
+plt.grid(True)
+
+# Concrete (Column)
+plt.subplot(1, 2, 2)
+plt.fill_between([0, strain_safe_c], [0, strain_max_c], color='green', alpha=0.3, label='Safe Zone')
+plt.fill_between([strain_safe_c, strain_critical_c], [strain_max_c, strain_max_c], color='yellow', alpha=0.3, label='Critical Zone')
+plt.fill_between([strain_critical_c, strain_max_c], [strain_max_c, strain_max_c], color='red', alpha=0.3, label='Evacuation Zone')
+plt.plot([0, strain_max_c], [0, strain_max_c], color='black', lw=2, label='Strain Curve')
+plt.title('Strain Zones for Concrete (Column)')
+plt.xlabel('Strain')
+plt.ylabel('Strain')
+plt.legend()
+plt.grid(True)
+
+plt.tight_layout()
+plt.show()
